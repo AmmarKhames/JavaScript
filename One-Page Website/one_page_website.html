@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ammar Khames</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #2e86de;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #1b4f72;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 3rem 2rem;
+    }
+
+    .gallery img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    form {
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input, form textarea {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      padding: 0.75rem;
+      background-color: #2e86de;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    form button:hover {
+      background-color: #2165af;
+    }
+
+    iframe {
+      max-width: 100%;
+      height: 315px;
+      border: none;
+      display: block;
+      margin: auto;
+    }
+
+    footer {
+      background-color: #2e86de;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="home">
+    <h1>Welcome to Ammar Khames' Portfolio</h1>
+    <p>Student | Problem Solver</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#pictures">Pictures</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="pictures">
+    <h2>Photo Gallery</h2>
+    <div class="gallery">
+      <img src="https://cdn.pixabay.com/photo/2023/09/17/19/10/building-8259184_1280.jpg" alt="Campus">
+      <img src="https://cdn.pixabay.com/photo/2020/04/04/03/42/paperwork-5000691_1280.png" alt="Projects">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/17/47/iphone-1836071_1280.jpg" alt="Events">
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>Featured Video</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/weU76DGHKU0?si=XUObcCfiOOOAnL3b" 
+      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+      encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Ammar Khames. All rights reserved.</p>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Expanded Image">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxImg) return;
+      lightbox.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>
